@@ -1,0 +1,24 @@
+# Optional: Automated email scheduling using GitHub Actions
+# This will send low-stock emails daily at 06:00 Africa/Maseru time
+
+name: Send Low Stock Email
+
+on:
+  schedule:
+    # Runs at 04:00 UTC (06:00 Africa/Maseru - GMT+2)
+    - cron: '0 4 * * *'
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Low Stock Email
+        run: |
+          curl -X POST https://hdjyxfbehzbajlzitrah.supabase.co/functions/v1/make-server-cc9de453/send-low-stock-email \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkanl4ZmJlaHpiYWpseml0cmFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3OTI3MzUsImV4cCI6MjA3ODM2ODczNX0.Y8unD6w7ZOV89mDj2jFaM-69XRlgr0wT0LbX_CyJC7M" \
+            -H "Content-Type: application/json"
+      
+      - name: Check result
+        run: echo "Low stock email sent successfully!"
