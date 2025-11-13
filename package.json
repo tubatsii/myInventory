@@ -1,6 +1,6 @@
 
   {
-      "name": "PANDA POS System Overview (Copy)",
+      "name": "panda-ims",
       "version": "0.1.0",
       "private": true,
       "dependencies": {
@@ -61,6 +61,7 @@
       },
       "scripts": {
           "dev": "vite",
-          "build": "vite build"
+          "build": "vite build",
+          "vercel-build": "vite build"
       }
   }
